@@ -22,10 +22,27 @@ export class App extends Component {
     this.setState({ filter: evt.currentTarget.value });
   };
 
-  addContact = ({ name, number }) => {
-    
+  checkContact = name => {
+    const { contacts } = this.state;
 
-    
+for (let i = 0; i < contacts.length; i += 1) {
+  if (contacts[i].name === name) {
+    return true
+  }
+  return false;
+}
+  }
+
+  
+  addContact = ({ name, number }) => {
+    // this.checkContact(name);
+    const isContact = this.checkContact(name);
+
+    if (isContact) {
+      alert(`${name} is already in contacts`)
+      return
+    }
+
     const contact = {
       id: nanoid(),
       name,
@@ -37,6 +54,7 @@ export class App extends Component {
       contacts: [contact, ...contacts]
     }))
   }
+
 
   deleteContact = contactId => {
     this.setState(({contacts}) => ({
