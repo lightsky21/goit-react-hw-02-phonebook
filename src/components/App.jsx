@@ -22,20 +22,38 @@ export class App extends Component {
     this.setState({ filter: evt.currentTarget.value });
   };
 
-  addContact = ({name, number}) => {
+  addContact = ({ name, number }) => {
+    
+
+    
     const contact = {
       id: nanoid(),
       name,
       number,
+    
     }
 
     this.setState(({contacts}) => ({
       contacts: [contact, ...contacts]
     }))
   }
+
+  deleteContact = contactId => {
+    this.setState(({contacts}) => ({
+      contacts: contacts.filter(contact => contact.id !== contactId)
+    }))
+  }
+
+  getVisibleContacts = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact => (contact.name.includes(normalizedFilter)))
+  }
   
   render() {
-    const { contacts, filter } = this.state;
+    const {  filter } = this.state;
+    const visibleContacts = this.getVisibleContacts();
+
     return (
       (<div>
   <h1>Phonebook</h1>
@@ -43,7 +61,7 @@ export class App extends Component {
 
   <h2>Contacts</h2>
         <Filter value={filter} onChange = {this.changeFilter} />
-        <ContactList contacts={contacts}  />
+        <ContactList contacts={visibleContacts} onDeleteContact = {this.deleteContact} />
 </div>)
     )
   }
