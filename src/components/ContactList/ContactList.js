@@ -1,15 +1,19 @@
+// import { Btn } from 'components/Components.styled';
+
+import { ListItem, ListItemText, ListItemBtn } from './ContactList.styled';
+
 function ContactList({ contacts, onDeleteContact }) {
   return (
     <ul>
       {contacts.map(({ id, name, number }) => (
-        <li key={id}>
-          <p>
+        <ListItem key={id}>
+          <ListItemText>
             {name} : {number}
-          </p>
-          <button type="button" onClick={() => onDeleteContact(id)}>
+          </ListItemText>
+          <ListItemBtn type="button" onClick={() => onDeleteContact(id)}>
             Delete
-          </button>
-        </li>
+          </ListItemBtn>
+        </ListItem>
       ))}
     </ul>
   );

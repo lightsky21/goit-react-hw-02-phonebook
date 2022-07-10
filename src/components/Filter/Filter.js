@@ -1,7 +1,9 @@
+import { FormLabelText } from 'components/Components.styled';
 function Filter({ value, onChange }) {
   return (
     <label>
-      {'Find contacts by name'}
+      <FormLabelText>Find contacts by name</FormLabelText>
+
       <input type="text" name="filter" value={value} onChange={onChange} />
     </label>
   );

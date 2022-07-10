@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { Container } from 'components/Components.styled'
 
 
 import ContactsForm from "./ContactsForm";
@@ -33,7 +34,7 @@ for (let i = 0; i < contacts.length; i += 1) {
 }
   }
 
-  
+
   addContact = ({ name, number }) => {
     // this.checkContact(name);
     const isContact = this.checkContact(name);
@@ -73,14 +74,14 @@ for (let i = 0; i < contacts.length; i += 1) {
     const visibleContacts = this.getVisibleContacts();
 
     return (
-      (<div>
+      (<Container>
   <h1>Phonebook</h1>
         <ContactsForm onSubmit={ this.addContact} />
 
   <h2>Contacts</h2>
         <Filter value={filter} onChange = {this.changeFilter} />
         <ContactList contacts={visibleContacts} onDeleteContact = {this.deleteContact} />
-</div>)
+</Container>)
     )
   }
 };
