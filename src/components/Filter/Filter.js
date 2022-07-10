@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FormLabelText } from 'components/Components.styled';
 function Filter({ value, onChange }) {
   return (
@@ -8,5 +9,8 @@ function Filter({ value, onChange }) {
     </label>
   );
 }
-
+Filter.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 export default Filter;

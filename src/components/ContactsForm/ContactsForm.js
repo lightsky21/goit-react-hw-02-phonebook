@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Form, FormField, FormBtn } from './ContactsForm.styled';
 import { FormLabelText } from 'components/Components.styled';
 const INITIAL_STATE = {
@@ -6,6 +7,9 @@ const INITIAL_STATE = {
   number: '',
 };
 class ContactsForm extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
   state = { ...INITIAL_STATE };
 
   handleChange = evt => {

@@ -21,6 +21,8 @@ export class App extends Component {
   }
   changeFilter = evt => {
     this.setState({ filter: evt.currentTarget.value });
+    // const { name, value } = evt.currentTarget;
+    // this.setState({ [name]: value });
   };
 
   checkContact = name => {
