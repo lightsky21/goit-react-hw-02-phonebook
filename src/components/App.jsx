@@ -7,7 +7,7 @@ import ContactsForm from "./ContactsForm";
 import Filter from "./Filter";
 import ContactList from "./ContactList";
 
-
+const LS_KEY = 'contacts';
 
 export class App extends Component {
 
@@ -18,6 +18,23 @@ export class App extends Component {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },],
     filter: '',
   
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+    if (prevState.contacts !== contacts) {
+      localStorage.setItem(LS_KEY, JSON.stringify(contacts))
+    }
+  }
+
+  componentDidMount() {
+    const contacts = localStorage.getItem(LS_KEY);
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+  this.setState({contacts:parsedContacts})
+}
+    
+
   }
   changeFilter = evt => {
     this.setState({ filter: evt.currentTarget.value });
